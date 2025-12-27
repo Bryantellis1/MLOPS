@@ -90,8 +90,8 @@ This is a learning repository. To create your own version:
 
 ## Resources
 
-- [Azure Machine Learning Documentation](https://docs.microsoft.com/azure/machine-learning/)
-- [Azure DevOps Pipelines Documentation](https://docs.microsoft.com/azure/devops/pipelines/)
+- [Azure Machine Learning Documentation](https://learn.microsoft.com/azure/machine-learning/)
+- [Azure DevOps Pipelines Documentation](https://learn.microsoft.com/azure/devops/pipelines/)
 - [GitHub Actions Documentation](https://docs.github.com/actions)
 - [MLflow Documentation](https://www.mlflow.org/docs/latest/index.html)
 

@@ -65,7 +65,7 @@ The `_build.yml` file in this repository uses three main tasks to build, release
 - `script: |` - The multiline bash script to execute
 
 **What it does**: 
-1. Copies necessary files from the container's root directory
+1. Copies necessary files from the container's root directory (the brace expansion `{file1,file2,file3}` is a bash shorthand that copies multiple files in one command)
 2. Installs npm dependencies
 3. Runs the `package.js` script to build the documentation with the build number
 
@@ -177,12 +177,12 @@ Beyond the tasks used in this pipeline, Azure DevOps offers many other task type
 
 ## Useful Resources
 
-- [Azure DevOps Pipeline Tasks Reference](https://docs.microsoft.com/azure/devops/pipelines/tasks/)
-- [YAML Schema Reference](https://docs.microsoft.com/azure/devops/pipelines/yaml-schema/)
-- [Bash Task Documentation](https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/bash)
-- [GitHub Release Task Documentation](https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/github-release)
-- [Publish Build Artifacts Task Documentation](https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/publish-build-artifacts)
-- [Pipeline Variables](https://docs.microsoft.com/azure/devops/pipelines/build/variables)
+- [Azure DevOps Pipeline Tasks Reference](https://learn.microsoft.com/azure/devops/pipelines/tasks/)
+- [YAML Schema Reference](https://learn.microsoft.com/azure/devops/pipelines/yaml-schema/)
+- [Bash Task Documentation](https://learn.microsoft.com/azure/devops/pipelines/tasks/utility/bash)
+- [GitHub Release Task Documentation](https://learn.microsoft.com/azure/devops/pipelines/tasks/utility/github-release)
+- [Publish Build Artifacts Task Documentation](https://learn.microsoft.com/azure/devops/pipelines/tasks/utility/publish-build-artifacts)
+- [Pipeline Variables](https://learn.microsoft.com/azure/devops/pipelines/build/variables)
 
 ## Troubleshooting
 
