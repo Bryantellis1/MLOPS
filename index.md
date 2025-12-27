@@ -17,3 +17,7 @@ To complete these exercises, you’ll need a Microsoft Azure subscription. If yo
 | --- | --- | 
 {% for activity in challenge  %}| {{ activity.challenge.module }} | [{{ activity.challenge.challenge }}{% if activity.challenge.type %} - {{ activity.challenge.type }}{% endif %}]({{ site.github.url }}{{ activity.url }}) |
 {% endfor %}
+
+## Additional Resources
+
+- [Understanding Azure DevOps Pipeline Tasks]({{ site.github.url }}/documentation/azure-devops-tasks) - Learn about the `task:` syntax used in the `_build.yml` file
