@@ -20,8 +20,10 @@ def main(args):
     # split data
     X_train, X_test, y_train, y_test = split_data(df)
 
-    # train model
-    train_model(args.reg_rate, X_train, X_test, y_train, y_test)
+    # train model and capture the result
+    model = train_model(args.reg_rate, X_train, X_test, y_train, y_test)
+    
+    return model
 
 
 def get_csvs_df(path):
@@ -30,15 +32,34 @@ def get_csvs_df(path):
     csv_files = glob.glob(f"{path}/*.csv")
     if not csv_files:
         raise RuntimeError(f"No CSV files found in provided data path: {path}")
-    return pd.concat((pd.read_csv(f) for f in csv_files), sort=False)
+    
+    # Read CSV files with error handling and optimized settings
+    # Using explicit loop for better error handling per file
+    dataframes = []
+    for csv_file in csv_files:
+        try:
+            # Use low_memory=False to avoid dtype guessing which can be slow
+            df = pd.read_csv(csv_file, low_memory=False)
+            dataframes.append(df)
+        except (FileNotFoundError, PermissionError, pd.errors.EmptyDataError, 
+                pd.errors.ParserError) as e:
+            raise RuntimeError(f"Error reading CSV file {csv_file}: {str(e)}")
+    
+    return pd.concat(dataframes, ignore_index=True, copy=False)
 
 
 # TO DO: add function to split data
 
 
 def train_model(reg_rate, X_train, X_test, y_train, y_test):
-    # train model
-    LogisticRegression(C=1/reg_rate, solver="liblinear").fit(X_train, y_train)
+    # train model with optimized parameters
+    # max_iter increased from default 100 to ensure convergence
+    model = LogisticRegression(
+        C=1/reg_rate, 
+        solver="liblinear",
+        max_iter=1000  # Prevent convergence warnings and potential slowdowns
+    ).fit(X_train, y_train)
+    return model
 
 
 def parse_args():
