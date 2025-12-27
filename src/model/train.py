@@ -41,7 +41,8 @@ def get_csvs_df(path):
             # Use low_memory=False to avoid dtype guessing which can be slow
             df = pd.read_csv(csv_file, low_memory=False)
             dataframes.append(df)
-        except Exception as e:
+        except (FileNotFoundError, PermissionError, pd.errors.EmptyDataError, 
+                pd.errors.ParserError) as e:
             raise RuntimeError(f"Error reading CSV file {csv_file}: {str(e)}")
     
     return pd.concat(dataframes, ignore_index=True, copy=False)

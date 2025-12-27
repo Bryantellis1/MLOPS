@@ -24,11 +24,11 @@ return pd.concat(dataframes, ignore_index=True, copy=False)
 ```
 
 **Improvements:**
-- Changed from generator to list comprehension for better performance with small file counts
+- Changed from generator to explicit loop for better error handling per file
 - Added `low_memory=False` to prevent slow dtype inference on large files
 - Changed `sort=False` to `ignore_index=True` for better efficiency
 - Added `copy=False` to reduce memory overhead during concatenation
-- Added comprehensive error handling for corrupt/unreadable CSV files
+- Added specific exception handling (FileNotFoundError, PermissionError, EmptyDataError, ParserError) for better error diagnostics
 
 ### 2. Return Trained Model (`train_model` function)
 **Before:**
