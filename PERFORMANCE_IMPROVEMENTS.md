@@ -100,3 +100,10 @@ These changes provide:
 - **Reusable models**: Trained models are now returned and can be reused
 - **Fewer warnings**: `max_iter=1000` prevents convergence warnings
 - **Better code maintainability**: Clearer code structure and error handling
+
+## Known Pre-existing Issues (Not Addressed)
+
+The following issues existed before these changes and were not addressed as they are outside the scope of performance optimization:
+
+1. **Missing `split_data` function**: The code references a `split_data` function that is not implemented (line 21 in train.py). This is marked with a "TO DO: add function to split data" comment in the original code.
+2. **Notebook inefficiencies**: The experimentation notebook has duplicate imports and suboptimal patterns, but these were not changed to minimize scope.

@@ -33,9 +33,8 @@ def get_csvs_df(path):
     if not csv_files:
         raise RuntimeError(f"No CSV files found in provided data path: {path}")
     
-    # Use list comprehension for better performance with small number of files
-    # ignore_index=True is more efficient than sort=False
     # Read CSV files with error handling and optimized settings
+    # Using explicit loop for better error handling per file
     dataframes = []
     for csv_file in csv_files:
         try:
@@ -54,7 +53,6 @@ def get_csvs_df(path):
 def train_model(reg_rate, X_train, X_test, y_train, y_test):
     # train model with optimized parameters
     # max_iter increased from default 100 to ensure convergence
-    # warm_start=False is default but explicit for clarity
     model = LogisticRegression(
         C=1/reg_rate, 
         solver="liblinear",
