@@ -30,7 +30,9 @@ def get_csvs_df(path):
     csv_files = glob.glob(f"{path}/*.csv")
     if not csv_files:
         raise RuntimeError(f"No CSV files found in provided data path: {path}")
-    return pd.concat((pd.read_csv(f) for f in csv_files), sort=False)
+    # Use list comprehension for better performance with small number of files
+    # ignore_index=True is more efficient than sort=False
+    return pd.concat([pd.read_csv(f) for f in csv_files], ignore_index=True)
 
 
 # TO DO: add function to split data
@@ -38,7 +40,8 @@ def get_csvs_df(path):
 
 def train_model(reg_rate, X_train, X_test, y_train, y_test):
     # train model
-    LogisticRegression(C=1/reg_rate, solver="liblinear").fit(X_train, y_train)
+    model = LogisticRegression(C=1/reg_rate, solver="liblinear").fit(X_train, y_train)
+    return model
 
 
 def parse_args():
